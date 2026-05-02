@@ -41,13 +41,13 @@ with st.sidebar:
         st.session_state.history = []
         st.rerun()
 
-# Example buttons
+
 cols = st.columns(3)
 for col, ex in zip(cols, ["Write a Python function", "Explain Newton's laws", "Hi there"]):
     if col.button(ex, use_container_width=True):
         st.session_state["prefill"] = ex
 
-# Chat history display
+
 for msg in st.session_state.history:
     with st.chat_message(msg["role"]):
         if msg["role"] == "assistant" and "meta" in msg:
@@ -55,7 +55,7 @@ for msg in st.session_state.history:
             st.markdown(f'<span class="model-badge {m["intent"]}-badge">{m["icon"]} {m["name"]}</span>', unsafe_allow_html=True)
         st.markdown(msg["content"])
 
-# Input
+
 prefill = st.session_state.pop("prefill", "")
 query = st.chat_input("Ask anything…") or prefill
 
